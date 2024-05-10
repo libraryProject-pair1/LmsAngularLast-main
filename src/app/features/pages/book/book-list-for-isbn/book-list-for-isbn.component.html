@@ -41,7 +41,7 @@
                </div>
             </div>
                  <div>
-                  <div class="prd-buttons w-100"><button type="button" class="btn btn-outline-danger w-50" (click)="onSelectBook(item)">Ödünç Al</button> 
+                  <div class="prd-buttons w-100"><button type="button" class="btn btn-outline-danger w-50" *ngIf="authService.loggedInMember!=null" (click)="onSelectBook(item)">Ödünç Al</button> 
                 </div>
               
           </div>
