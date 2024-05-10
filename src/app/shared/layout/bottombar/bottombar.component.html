@@ -1,0 +1,57 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid ">
+            <div class= "ilk dropdown " id="seconddropdown">
+                <a class="first btn btn-secondary dropdown-toggle me-2" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                    <i class="bi bi-bookmark-plus-fill"></i> Kategoriler
+                </a>
+              
+                <ul class="fd dropdown-menu" style="width: 180px;">
+                    <li *ngFor="let category of categories"><a class="dropdown-item" style="width: 180px;" routerLink="/books/category/{{category.id}}" (click)="setCurrentCategory(category)" ><img src="/assets/img/bookicon.png" alt="" width="20px" height="20px" > {{category.categoryName}} </a></li>
+                 </ul>
+                </div>
+
+                <div class="ikinci dropdown">
+              
+                <a class="first btn btn-secondary dropdown-toggle me-2" href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="true">
+                    <i class="bi bi-bookmark-plus-fill"></i> Yazarlar
+                </a>
+                <ul class="fd dropdown-menu"  style="width: 180px;">
+                    <li *ngFor="let author of authors"><a class="dropdown-item" style="width: 180px;"  routerLink="/books/author/{{author.id}}" (click)="setCurrentAuthor(author)" ><img src="/assets/img/authoricon.png" alt="" width="25px" height="25px"> {{author.name}} </a></li>
+                    
+    
+                </ul>
+             </div>
+    
+    
+            <div class="fs collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class=" navbar-nav me-2">
+                 
+                    <div class=" dropdown" id="thirddropdown">
+                        <a class="scnd btn btn-secondary dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                           Hizmetler
+                        </a>
+                      
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Bilim</a></li>
+                            <li><a class="dropdown-item" href="#">Ekonomi</a></li>
+                            <li><a class="dropdown-item" href="#">Psikoloji</a></li>
+                            <li><a class="dropdown-item" href="#">Edebiyat</a></li>
+                            <li><a class="dropdown-item" href="#">Sosyoloji</a></li>
+                            <li><a class="dropdown-item" href="#">Sanat</a></li>
+                            <li><a class="dropdown-item" href="#">Yabancı Dil</a></li>
+            
+                        </ul>
+    
+                    </div>
+    
+                  <a class="nav-link" href="#">Hakkımızda</a>
+                  <a class="nav-link" href="#">Hızlı Erişim</a>
+                 
+                </div>
+              
+            
+         </div>
+         </div>
+      </nav>
+    </div>

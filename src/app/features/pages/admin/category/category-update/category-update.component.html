@@ -1,0 +1,30 @@
+<div class="content animate__animated  animate__slideInUp">
+    <div class="col-md-12">
+    <div class="card">
+        <div class="card-header">Güncelleme</div>
+        <div class="card-body">
+            <form [formGroup]="categoryUpdateForm">
+                <p>CategoryId= {{categoryService.selectedCategory.id}}</p>
+                <div class="mb-3">
+                    <label>Kategori Adı:</label>
+                    <input type="text" placeholder={{categoryService.selectedCategory.categoryName}} formControlName="categoryName" (change)="onNameChange($event)" class="form-control" value=""/>
+                </div>
+                
+                <small *ngIf="categoryUpdateForm.get('categoryName')?.hasError('required') && categoryUpdateForm.get('CategoryName')?.touched" class="form-text">
+                    Kategori adı zorunludur.
+                </small>
+                <small *ngIf="categoryUpdateForm.get('categoryName')?.hasError('minlength') && categoryUpdateForm.get('categoryName')?.dirty"  class="form-text text-muted">
+                    Kategori adı en az iki karakter olmalıdır.
+                </small>
+
+               
+                
+            </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-outline-dark w-50" (click)="updateToDb()">Güncelle</button>
+           
+           
+        </div>
+    </div>
+</div>
