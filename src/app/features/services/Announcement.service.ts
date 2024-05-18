@@ -9,7 +9,7 @@ import { Announcement } from '../models/Announcement';
   providedIn: 'root'
 })
 export class AnnouncementService {
-
+  selectedAnnouncement:any;
   constructor(private httpClient:HttpClient) { }
 
   apiUrl="http://localhost:5278/api/Announcements";

@@ -5,6 +5,7 @@ import { AuthorService } from '../../../../services/author.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Response } from '../../../../models/response';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-author',
@@ -26,7 +27,8 @@ export class UpdateAuthorComponent {
     private formBuilder: FormBuilder,
     public authorService: AuthorService,
    private activeRoute: ActivatedRoute,
-    private route: Router) { }
+    private route: Router, 
+    private toastr:ToastrService) { }
 
 
   ngOnInit(): void {
@@ -77,7 +79,7 @@ export class UpdateAuthorComponent {
       console.log(formData.name);
       this.authorService.editAuthor(formData).subscribe((response) => {
         console.log("response", response);
-        alert(formData.name.toUpperCase() + " başarıyla güncellendi");
+        this.toastr.success(formData.name.toUpperCase() + " başarıyla güncellendi");
       }
       );
     }

@@ -22,8 +22,8 @@
                     <th scope="row">{{item.identityNumber}}</th>
                     <th scope="row">{{item.biography}}</th>
                     <th>
-                    <button  class="btn btn-outline-danger w-50 " (click)="deleteAuthor($event,item.id)" > Sil</button> 
-                    <a  class="btn btn-outline-dark w-50" routerLink="update/{{item.id}}" (click)="onSelectAuthor(item)"> Güncelle</a></th>
+                    <button  class="btn btn-outline-danger me-3" (click)="deleteAuthor($event,item.id)" > Sil</button> 
+                    <a  class="btn btn-outline-dark" routerLink="update/{{item.id}}" (click)="onSelectAuthor(item)"> Güncelle</a></th>
                   </tr>
                 </tbody>
              

@@ -5,6 +5,7 @@ import { Category } from '../../../../models/Category';
 import { CategoryService } from '../../../../services/category.service';
 import { CommonModule } from '@angular/common';
 import { Response } from '../../../../models/response';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category-update',
@@ -23,7 +24,8 @@ export class CategoryUpdateComponent {
     private formBuilder: FormBuilder,
     public categoryService: CategoryService,
    private activeRoute: ActivatedRoute,
-    private route: Router) { }
+    private route: Router,
+    private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -72,7 +74,7 @@ export class CategoryUpdateComponent {
       console.log(formData.categoryName);
       this.categoryService.editCategory(formData).subscribe((response) => {
         console.log("response", response);
-        alert(formData.categoryName.toUpperCase() + " başarıyla güncellendi");
+        this.toastr.success(formData.categoryName.toUpperCase() + " başarıyla güncellendi");
       }
       );
     }

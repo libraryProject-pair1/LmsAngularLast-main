@@ -34,6 +34,27 @@
  
      } 
      .card-body{
+        tr{
+            margin-top: 80px;
+           th{
+            font-size:medium;
+            text-align: center;
+            font-family:to-upper-case($string: "");
+            padding-top: 10px;
+            //align-items: center;
+           //display: flexbox;
+            
+            //text-align:left;
+            //border-right: 1px solid grey;
+           .btn{
+              align-items: center;
+              width: 150px;
+              position: relative;
+              left: 60px;
+             
+           }
+
+        }}
         
  
          label{

@@ -10,7 +10,7 @@
           <div class="form-group mb-4">
             <h5  class="pb-2">E-mail: </h5>
             <input formControlName="email" type="email" class="form-control height-4 px-4 "  placeholder="account@account.com">
-            <myinput-errors class="aaa" fieldName="email" /> 
+            <myinput-errors class="konum" fieldName="email" /> 
             </div>
             
             <h5  class="pb-2">Şifre:</h5>
@@ -20,7 +20,7 @@
               <span *ngIf="passwordsignInHidden" ><i class="bi bi-eye-slash"></i></span>
               <span *ngIf="!passwordsignInHidden" ><i class="bi bi-eye"></i></span>
             </div></div>
-            <div> <myinput-errors class="aaa" fieldName="password" /></div>
+            <div> <myinput-errors class="konum" fieldName="password" /></div>
 			
            <button routerLink="/homepage" type="submit" class="btn btn-outline-danger" (click)="onLogin()" > Giriş </button>
 

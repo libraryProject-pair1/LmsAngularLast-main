@@ -18,7 +18,7 @@
                 <tr *ngFor="let item of publisherList " >  <!-- | filterBookListForCategory : searchKey -->
                   <th scope="row">{{item.name}}</th>
                   <th>
-                  <button  class="btn btn-outline-danger ml-1" (click)="deletePublisher($event,item.id)" > Sil</button> 
+                  <button  class="btn btn-outline-danger me-3" (click)="deletePublisher($event,item.id)" > Sil</button> 
                   <a routerLink="publisher/{{item.id}}/publisherupdate" class="btn btn-outline-dark" (click)="onSelectPublisher(item)">Güncelle</a>
                 </tr>
               </tbody>

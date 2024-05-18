@@ -15,6 +15,7 @@ import { FilterBookListForCategoryPipe } from "../../../../../core/pipes/FilterB
 import { AuthorService } from "../../../../services/author.service";
 import { Author } from "../../../../models/Author";
 import { BookUpdateComponent } from "../book-update/book-update.component";
+import { ToastrService } from "ngx-toastr";
 
 
 
@@ -42,7 +43,8 @@ export class BookListComponent implements OnInit{
     private categoryService:CategoryService,
     private publisherService:PublisherService,
     private authorService: AuthorService,
-    private router:Router
+    private router:Router,
+    private toastr: ToastrService
     )
   {
     
@@ -141,7 +143,7 @@ export class BookListComponent implements OnInit{
       event.target.innerText="Siliniyor...";
       this.bookService.deleteBook(bookId).subscribe((res:any)=>{
         this.getBooks();
-        console.log(res+" silinidi");
+        console.log(res+" silindi");
       });
     }
   }

@@ -21,7 +21,7 @@
                 <div class="mb-3">
                     <label for="categoryId" > Kategori: </label>
                     <select name="categoryId" id="categoryId" formControlName="categoryId" (change)="onCategoryChange($event)"  >
-                        <option value="" disabled selected>Şuan:{{bookService.selectedBook.categoryName}}</option>
+                        <option value="" disabled selected>Şu an:{{bookService.selectedBook.categoryName}}</option>
                         <option *ngFor="let item of categories" [value]="item.id" >
                         {{ item.categoryName }}
                       </option>
@@ -46,7 +46,7 @@
                 <div class="mb-3">
                     <label for="authorId" > Yazar: </label>
                     <select name="authorId" id="authorId" formControlName="authorId" (change)="onAuthorChange($event)">
-                        <option value="" disabled selected>Şuan:{{bookService.selectedBook.authorName}}</option>
+                        <option value="" disabled selected>Şu an:{{bookService.selectedBook.authorName}}</option>
                         <option *ngFor="let item of authors " [value]="item.id">
                         {{ item.name }}
                       </option>
@@ -55,7 +55,7 @@
                  <div class="mb-3">
                     <label for="publisherId" > Yayınevi: </label>
                     <select name="publisherId" id="publisherId" formControlName="publisherId" (change)="onPublisherChange($event)  ">
-                        <option value="" disabled selected>Şuan:{{bookService.selectedBook.publisherName}}</option> 
+                        <option value="" disabled selected>Şu an:{{bookService.selectedBook.publisherName}}</option> 
                         <option *ngFor="let item of publishers" [value]="item.id">
                         {{ item.name }}
                       </option>

@@ -2,44 +2,46 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { Category } from '../../../../models/Category';
-import { CategoryService } from '../../../../services/category.service';
+import { Announcement } from '../../../../models/Announcement';
+import { AnnouncementService } from '../../../../services/Announcement.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-category-add',
+  selector: 'app-add-announcement',
   standalone: true,
   imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule],
-  templateUrl: './category-add.component.html',
-  styleUrl: './category-add.component.scss'
+  templateUrl: './add-announcement.component.html',
+  styleUrl: './add-announcement.component.scss'
 })
-export class CategoryAddComponent {
-  categoryAddForm!:FormGroup;
-  categories:Category[]=[];
+export class AddAnnouncementComponent {
+  announcementAddForm!:FormGroup;
+  announcements:Announcement[]=[];
 
  
   constructor(private formBuilder:FormBuilder,
-   private categoryService: CategoryService,
+   private announcementService: AnnouncementService,
    private toastr: ToastrService){}
  
    ngOnInit():void{
-    this.createCategoryAddForm();
+    this.createAnnouncementAddForm();
  
    }
 
-   createCategoryAddForm(){
-     this.categoryAddForm=this.formBuilder.group({
-       categoryName:["", (Validators.required, Validators.minLength(2))]
+   createAnnouncementAddForm(){
+     this.announcementAddForm=this.formBuilder.group({
+       
+       title:["", (Validators.required, Validators.minLength(2))],
+       description:["", Validators.required],
      })
    }
    addToDb():void{
-     if(this.categoryAddForm.valid){
-       const formData:Category=this.categoryAddForm.value;
-       console.log(formData.categoryName);
-       this.categoryService.add(formData).subscribe(
+     if(this.announcementAddForm.valid){
+       const formData:Announcement=this.announcementAddForm.value;
+      // console.log(formData.title);
+       this.announcementService.add(formData).subscribe(
         (response) => {
           console.log("response", response);
-          this.toastr.success(formData.categoryName.toUpperCase() + " başarıyla eklendi");
+          this.toastr.success(formData.title.toUpperCase() + " başarıyla eklendi");
         },
         (error) => {
           if (error.status === 500) {
@@ -53,4 +55,5 @@ export class CategoryAddComponent {
       this.toastr.info("Lütfen geçerli bir kitap formu doldurun!");
     }
    }
+
 }

@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BaseInputErrorsComponent } from '../components/base-input-errors/base-input-errors.component';
 import { BaseInputComponent } from '../components/base-input/base-input.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -18,7 +19,7 @@ import { BaseInputComponent } from '../components/base-input/base-input.componen
 })
 export class RegisterComponent implements OnInit{
   constructor(private formBuilder : FormBuilder,
-    private registerService:RegisterService)
+    private registerService:RegisterService,private toastr:ToastrService)
     {}
     registerForm!:FormGroup;
     passwordsignUpHidden=true;
@@ -40,7 +41,9 @@ export class RegisterComponent implements OnInit{
     this.registerService.Rgstr(this.registerForm.value).subscribe(response=>{
       console.log(response);
       console.log("Başarıyla Eklendi");
-      alert(response.firstName+""+ response.lastName+ "adlı kullanıcı eklendi.");
+     // console.log(response.firstName+""+ response.lastName+ "adlı kullanıcı eklendi.");
+      this.toastr.success('Kaydınız başarılı bir şekilde gerçekleşti.');
+
     })
    }
   

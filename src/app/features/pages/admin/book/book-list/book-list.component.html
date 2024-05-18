@@ -58,7 +58,7 @@
         <th scope="row">{{item.publisherName}}</th>
        
           <!-- <a routerLink="book/{{item.id}}/book-update" class="btn btn-outline-dark" id="boyut">Güncelle</a>-->
-          <button type="submit" routerLink="/book-update" (click)="onSelectBook(item)" class="btn btn-primary " id="boyut" >Güncelle</button>
+          <button type="submit" routerLink="/book-update" (click)="onSelectBook(item)" class="btn btn-outline-dark me-3" id="boyut" >Güncelle</button>
         
        
           <button type="button" (click)="deleteBook($event,item.id)" class="btn btn-outline-danger " id="boyut" >Sil</button>

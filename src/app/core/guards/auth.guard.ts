@@ -3,19 +3,25 @@ import { CanActivateFn, Router } from '@angular/router';
 import { TokenService } from '../services/token.service';
 import { jwtDecode } from 'jwt-decode';
 import { JWT_ROLES } from '../constants/jwtAttributes';
+import { ToastrService } from 'ngx-toastr';
 
 
 export const authGuard: CanActivateFn = (route, state) => {
+  
+
 
   console.log("--------------------");
   const router = inject(Router);
   const tokenService = inject(TokenService);
+  const toastr= inject(ToastrService);
 
   let rol:any;
   let token = tokenService.getToken();//Token servis'ten 'Token' değerini getir
   let hasToken = tokenService.hasToken();
   if (token == null) {
-    router.navigateByUrl("/login");alert("Giriş lazım");return false;
+    router.navigateByUrl("/login");
+    toastr.info("Giriş yapılması gerekmektedir.");
+    return false;
   }
  
   
@@ -53,7 +59,7 @@ export const authGuard: CanActivateFn = (route, state) => {
         console.log(role.toLowerCase(),"ile giriş yapıldı:true")
       }
       else{
-        alert("Giriş lazım")
+        toastr.info("Giriş lazım")
         router.navigateByUrl("/login");
       }
 

@@ -5,6 +5,7 @@ import { AuthService } from '../../../../core/services/Auth.service';
 import { Member } from '../../../models/member';
 import { ProfileService } from '../../../services/profile.service';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-edit',
@@ -20,7 +21,7 @@ export class UserEditComponent {
 
   memberUpdateForm!: FormGroup;
   constructor(public authService:AuthService,private formBuilder: FormBuilder
-    ,private profileService:ProfileService){
+    ,private profileService:ProfileService, private toastr:ToastrService){
   }
   editMemberUpdateForm(){
     this.memberUpdateForm= this.formBuilder.group({
@@ -36,7 +37,7 @@ export class UserEditComponent {
         console.log(formData.firstName);
         this.profileService.editMemberProfile(formData).subscribe((response) => {
           console.log("response", response);
-          alert(formData.firstName.toUpperCase() + " başarıyla güncellendi");
+          this.toastr.success(formData.firstName.toUpperCase() + " başarıyla güncellendi");
           this.ngOnInit();
         }
         );

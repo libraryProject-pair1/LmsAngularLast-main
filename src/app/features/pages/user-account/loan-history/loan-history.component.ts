@@ -11,6 +11,7 @@ import { ResponseModel } from '../../../models/responseModel';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReturnLoanBook } from '../../../models/returnLoanBook';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class LoanHistoryComponent implements OnInit {
     private authService: AuthService,
     private memberService: MemberService,
     private bookService: BookService,
-  private formBuilder:FormBuilder) { }
+  private formBuilder:FormBuilder,
+  private toastr: ToastrService) { }
 
   memberId = this.authService.loggedInMember?.id;
   loanList: LoanTransaction[] = [];
@@ -110,7 +112,7 @@ export class LoanHistoryComponent implements OnInit {
     };
     this.loanService.bookReturn(formData).subscribe((response) => {
       console.log("response", response);
-      alert("Kitap iade edildi");
+      this.toastr.success("Kitap iade edildi");
       this.myResponseBorrowed = this.myResponseBorrowed.filter(loan => loan.id !== item.id);
 
     });

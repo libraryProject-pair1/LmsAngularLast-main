@@ -67,7 +67,7 @@ export class EditAuthorComponent {
 
   onSelectAuthor(author: Author) {
     this.authorService.selectedAuthor = author; // Seçilen kitabı sakla
-    this.router.navigate(['admin/editauthor/update/:id']); 
+    this.router.navigate(['admin/editAuthor/update/:id']); 
     console.log("OnSelectedAuthor:",author);
   }
 }

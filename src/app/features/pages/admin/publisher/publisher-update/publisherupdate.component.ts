@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { Response } from '../../../../models/response';
 import { SingleResponseModel } from '../../../../models/singleResponseModel';
 import { ResponseModel } from '../../../../models/responseModel';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-publisher',
@@ -26,7 +27,8 @@ export class publisherUpdateComponent {
     private formBuilder: FormBuilder,
     public publisherService: PublisherService,
     private activeRoute: ActivatedRoute,
-    private route: Router) { }
+    private route: Router,
+    private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -71,7 +73,7 @@ export class publisherUpdateComponent {
       console.log(formData.name);
       this.publisherService.editPublisher(formData).subscribe((response) => {
         console.log("response", response);
-        alert(formData.name.toUpperCase() + " başarıyla güncellendi");
+        this.toastr.success(formData.name.toUpperCase() + " başarıyla güncellendi");
       }
       );
     }

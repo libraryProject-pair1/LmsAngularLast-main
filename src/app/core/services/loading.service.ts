@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoadingService {
 
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   constructor() {}
 
   setLoading(value: boolean) {

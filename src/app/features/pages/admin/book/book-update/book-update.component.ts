@@ -16,6 +16,7 @@ import { Author } from '../../../../models/Author';
 import { AuthorService } from '../../../../services/author.service';
 import { BookListComponent } from '../book-list/book-list.component';
 import { SingleResponseModel } from '../../../../models/singleResponseModel';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -47,7 +48,8 @@ export class BookUpdateComponent implements OnInit {
     private publisherService: PublisherService,
     private authorService:AuthorService,
     private activeToute: ActivatedRoute,
-    private router:Router) { }
+    private router:Router,
+    private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -173,7 +175,7 @@ export class BookUpdateComponent implements OnInit {
       console.log(formData.name);
       this.bookService.editBook(formData).subscribe((response) => {
         console.log("response", response);
-        alert(formData.name.toUpperCase() + " başarıyla güncellendi");
+        this.toastr.success(formData.name.toUpperCase() + " başarıyla güncellendi");
       }
       );
     }

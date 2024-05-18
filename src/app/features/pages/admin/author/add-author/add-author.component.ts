@@ -4,6 +4,7 @@ import { Author } from '../../../../models/Author';
 import { AuthorService } from '../../../../services/author.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-author',
@@ -18,7 +19,7 @@ export class AddAuthorComponent {
 
  
   constructor(private formBuilder:FormBuilder,
-   private authorService: AuthorService){}
+   private authorService: AuthorService, private toastr: ToastrService){}
  
    ngOnInit():void{
     this.createAuthorAddForm();
@@ -39,18 +40,18 @@ export class AddAuthorComponent {
        this.authorService.add(formData).subscribe(
         (response) => {
           console.log("response", response);
-          alert(formData.name.toUpperCase() + " başarıyla eklendi");
+          this.toastr.success(formData.name.toUpperCase() + " başarıyla eklendi.");
         },
         (error) => {
           if (error.status === 500) {
-            alert("Eklemeye çalıştığınız veri zaten mevcut!");
+            this.toastr.info("Eklemeye çalıştığınız veri zaten mevcut!");
           } else {
-            alert("Beklenmeyen bir hata oluştu, lütfen tekrar deneyin.");
+            this.toastr.error("Beklenmeyen bir hata oluştu, lütfen tekrar deneyin.");
           }
         }
       );
     } else {
-      alert("Lütfen geçerli bir kitap formu doldurun!");
+      this.toastr.info("Lütfen geçerli bir kitap formu doldurun!");
     }
   }
      }

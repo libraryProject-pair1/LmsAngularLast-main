@@ -74,3 +74,10 @@ $red:#fef8f9;
   }
 
 }
+h2 {
+  font-size: 22px;
+  background:linear-gradient(to bottom, #e2afaf, #6e0f0f);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 50px;
+ }

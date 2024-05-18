@@ -8,7 +8,7 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
   private isLoggedIn = false;
-  loggedInMember: Member | null = null;
+ private _loggedInMember: Member | null = null;
   
   constructor(private tokenService:TokenService) { }
 
@@ -29,9 +29,25 @@ export class AuthService {
   isAuthenticated(): boolean {
     return JSON.parse(localStorage.getItem('isLoggedIn') || 'false' );
   }
+  
+  get loggedInMember(): Member| null{
+    if(!this._loggedInMember){
+      const memberData= localStorage.getItem('loggedInMember');
+      this._loggedInMember=memberData? JSON.parse(memberData):null;
 
+    }
+    return this._loggedInMember;
+  }
  
-
+  set loggedInMember(member: Member| null){
+    this._loggedInMember=member;
+    if(member){
+      localStorage.setItem('loggedInMember',JSON.stringify(member));
+    }
+    else{
+      localStorage.removeItem('loggedInMember');
+    }
+  }
 }
 
 

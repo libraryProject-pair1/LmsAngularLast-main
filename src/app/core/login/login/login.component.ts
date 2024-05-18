@@ -17,6 +17,7 @@ import { AuthService } from '../../services/Auth.service';
 import { LayoutComponent } from "../../../shared/layout/layout.component";
 import { RegisterService } from '../../services/register.service';
 import { BaseInputErrorsComponent } from '../../components/base-input-errors/base-input-errors.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-login',
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
     private tokenService: TokenService,
     private memberService: MemberService,
     private authService:AuthService,
+    private toastr: ToastrService
  
   ) {}
 
@@ -66,7 +68,8 @@ export class LoginComponent implements OnInit {
     this.loginService.Login(email, password, authenticatorCode).subscribe((result: LoginResponse) => {
       result.email = email;
       localStorage.setItem('Token', result.accessToken.token);
-      alert(result.email + " kullanıcısı giriş yaptı")
+      this.toastr.success('Başarılı bir şekilde giriş yaptınız.');
+     // alert(result.email + " kullanıcısı giriş yaptı")
       this.onMemberLog();
       this.router.navigateByUrl('/homepage');
     });

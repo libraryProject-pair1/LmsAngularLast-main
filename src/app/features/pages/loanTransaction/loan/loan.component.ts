@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AuthService } from '../../../../core/services/Auth.service';
 import { LoanTransaction } from '../../../models/loanTransaction';
 import { LoanTransactionService } from '../../../services/loan-transaction.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-loan',
@@ -17,7 +18,8 @@ export class LoanComponent implements OnInit {
   constructor(public bookService: BookService, 
     public authService: AuthService,
     private formBuilder:FormBuilder,
-    private loanService:LoanTransactionService) { }
+    private loanService:LoanTransactionService,
+    private toastr: ToastrService) { }
 
   loanForm !: FormGroup;
   returnDate!: Date;
@@ -38,7 +40,7 @@ export class LoanComponent implements OnInit {
         const formData:LoanTransaction=this.loanForm.value;
         this.loanService.borrowed(formData).subscribe((response)=>{
           console.log("Ödünç alma bilgileri",response);
-          alert(this.bookService.selectedBook.name+" isimli kitap "+ this.authService.loggedInMember?.email+" kullancısına ödünç verildi");
+          this.toastr.success(this.bookService.selectedBook.name+" isimli kitap "+ this.authService.loggedInMember?.email+" kullancısına ödünç verildi");
         }
       )}
     }

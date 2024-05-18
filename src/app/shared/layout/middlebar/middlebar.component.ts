@@ -18,11 +18,14 @@ export class MiddlebarComponent {
   loggedInMember: Member | null=null;
   //showAdminIcon:boolean= false;
 
-constructor(private tokenService: TokenService, private router: Router, public authService: AuthService){}
+constructor(public tokenService: TokenService, private router: Router, public authService: AuthService){}
+
+ 
 
   isLoggedIn():boolean{
     this.loggedInMember=this.authService.loggedInMember;
     return this.tokenService.hasToken();
+   
   }
 
   logOut():void{
@@ -39,9 +42,9 @@ constructor(private tokenService: TokenService, private router: Router, public a
     return false;
    }
 
-  };
+  }; */
 
-  isMenuOpen: boolean=false;
+ /*  isMenuOpen: boolean=false;
   toggleMenu(){
     this.isMenuOpen= !this.isMenuOpen;
   }
