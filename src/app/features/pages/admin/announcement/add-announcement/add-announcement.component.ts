@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router';
 import { Announcement } from '../../../../models/Announcement';
 import { AnnouncementService } from '../../../../services/Announcement.service';
 import { ToastrService } from 'ngx-toastr';
+import { BaseInputComponent } from '../../../../../core/components/base-input/base-input.component';
+import { BaseInputErrorsComponent } from "../../../../../core/components/base-input-errors/base-input-errors.component";
 
 @Component({
-  selector: 'app-add-announcement',
-  standalone: true,
-  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule],
-  templateUrl: './add-announcement.component.html',
-  styleUrl: './add-announcement.component.scss'
+    selector: 'app-add-announcement',
+    standalone: true,
+    templateUrl: './add-announcement.component.html',
+    styleUrl: './add-announcement.component.scss',
+    imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, BaseInputErrorsComponent]
 })
 export class AddAnnouncementComponent {
   announcementAddForm!:FormGroup;
@@ -30,7 +32,7 @@ export class AddAnnouncementComponent {
    createAnnouncementAddForm(){
      this.announcementAddForm=this.formBuilder.group({
        
-       title:["", (Validators.required, Validators.minLength(2))],
+       title:['', [Validators.required, Validators.minLength(2),]],
        description:["", Validators.required],
      })
    }

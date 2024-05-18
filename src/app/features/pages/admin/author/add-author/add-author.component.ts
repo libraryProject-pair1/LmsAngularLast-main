@@ -5,11 +5,12 @@ import { AuthorService } from '../../../../services/author.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { BaseInputComponent } from '../../../../../core/components/base-input/base-input.component';
 
 @Component({
   selector: 'app-add-author',
   standalone: true,
-  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule, BaseInputComponent],
   templateUrl: './add-author.component.html',
   styleUrl: './add-author.component.scss'
 })
@@ -28,7 +29,7 @@ export class AddAuthorComponent {
 
    createAuthorAddForm(){
      this.authorAddForm=this.formBuilder.group({
-       name:["", (Validators.required, Validators.minLength(2))],
+       name:['', [Validators.required, Validators.minLength(2),]],
        identityNumber:["", (Validators.required)],
        biography:["", (Validators.required)],
      })

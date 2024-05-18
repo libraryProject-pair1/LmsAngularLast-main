@@ -8,24 +8,16 @@
                 <div class="mb-3">
                     <label>Yazar Adı:</label>
                     <input type="text" placeholder={{authorService.selectedAuthor.name}} formControlName="name" (change)="onNameChange($event)" class="form-control" value=""/>
+                    <myinput-errors fieldName="name" />
                 </div>
-                
-                <small *ngIf="authorUpdateForm.get('name')?.hasError('required') && authorUpdateForm.get('name')?.touched" class="form-text">
-                    Yazar adı zorunludur.
-                </small>
-                <small *ngIf="authorUpdateForm.get('name')?.hasError('minlength') && authorUpdateForm.get('name')?.dirty"  class="form-text text-muted">
-                    Yazar adı en az iki karakter olmalıdır.
-                </small>
-                
-                <div class="mb-3">
+                  <div class="mb-3">
                     <label>Kimlik:</label>
                     <input type="text" placeholder={{authorService.selectedAuthor.identityNumber}} formControlName="identityNumber" class="form-control"/>
                 </div>
-           
-                <div class="mb-3">
+                  <div class="mb-3">
                     <label>Biyografi:</label>
                     <textarea  placeholder={{authorService.selectedAuthor.biography}} formControlName="biography" class="form-control" style="height: 100px;"></textarea>
-                </div>
+                  </div>
                 
             </form>
         </div>

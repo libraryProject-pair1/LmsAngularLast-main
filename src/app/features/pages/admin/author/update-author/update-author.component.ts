@@ -6,11 +6,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Response } from '../../../../models/response';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { BaseInputErrorsComponent } from '../../../../../core/components/base-input-errors/base-input-errors.component';
 
 @Component({
   selector: 'app-update-author',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule, BaseInputErrorsComponent],
   templateUrl: './update-author.component.html',
   styleUrl: './update-author.component.scss'
 })

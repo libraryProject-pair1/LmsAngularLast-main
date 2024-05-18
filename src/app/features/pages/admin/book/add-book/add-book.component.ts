@@ -12,10 +12,11 @@ import { Book } from '../../../../models/book';
 import { AuthorService } from '../../../../services/author.service';
 import { Author } from '../../../../models/Author';
 import { ToastrService } from 'ngx-toastr';
+import { BaseInputErrorsComponent } from '../../../../../core/components/base-input-errors/base-input-errors.component';
 @Component({
   selector: 'app-add-book',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,CategoryListComponent],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,CategoryListComponent, BaseInputErrorsComponent],
   templateUrl: './add-book.component.html',
   styleUrl: './add-book.component.scss'
 })

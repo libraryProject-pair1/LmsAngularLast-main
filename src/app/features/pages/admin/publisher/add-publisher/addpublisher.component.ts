@@ -5,11 +5,12 @@ import { PublisherService } from '../../../../services/publisher.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { BaseInputErrorsComponent } from '../../../../../core/components/base-input-errors/base-input-errors.component';
 
 @Component({
   selector: 'app-add-publisher',
   standalone: true,
-  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule, BaseInputErrorsComponent],
   templateUrl: './addpublisher.component.html',
   styleUrl: './addpublisher.component.scss'
 })
@@ -27,7 +28,7 @@ export class AddPublisherComponent {
   }
   createPublisherAddForm(){
     this.publisherAddForm=this.formBuilder.group({
-      name:["", (Validators.required, Validators.minLength(2))]
+      name:["",[Validators.required, Validators.minLength(2)]],
     })
   }
   addToDb():void{

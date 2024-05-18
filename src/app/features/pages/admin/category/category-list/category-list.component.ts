@@ -66,7 +66,7 @@ export class CategoryListComponent implements OnInit {
 
   onSelectCategory(category: Category) {
     this.categoryService.selectedCategory = category; // Seçilen kategoriyi sakla
-    this.router.navigate(['admin/editcategory/update/:id']); 
+    this.router.navigate(['admin/editCategory/update/:id']); 
     console.log("OnSelectedCategory:",category);
   }
 }

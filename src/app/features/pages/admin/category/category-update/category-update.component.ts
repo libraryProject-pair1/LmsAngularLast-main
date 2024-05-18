@@ -6,11 +6,12 @@ import { CategoryService } from '../../../../services/category.service';
 import { CommonModule } from '@angular/common';
 import { Response } from '../../../../models/response';
 import { ToastrService } from 'ngx-toastr';
+import { BaseInputErrorsComponent } from '../../../../../core/components/base-input-errors/base-input-errors.component';
 
 @Component({
   selector: 'app-category-update',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule, BaseInputErrorsComponent],
   templateUrl: './category-update.component.html',
   styleUrl: './category-update.component.scss'
 })

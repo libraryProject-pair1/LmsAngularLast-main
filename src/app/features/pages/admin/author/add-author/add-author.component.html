@@ -4,16 +4,18 @@
         <div class="card-body">
             <form [formGroup]="authorAddForm">
                 
-                <div class="mb-3">
+                <div class="mb-2">
                     <label>Yazar adı:</label>
-                    <input type="text" placeholder="Yazar adı" id="name" formControlName="name" class="form-control"/>
+                  
+                 <myinput
+                 inputType="text"
+                     controlName="name"
+                     placeholder="Yazar"
+                 />
+                
+                     
                 </div>
-                <small *ngIf="authorAddForm.get('name')?.hasError('required') && authorAddForm.get('name')?.touched" class="form-text text-muted">
-                    Ürün adı zorunludur
-                </small>
-                <small *ngIf="authorAddForm.get('name')?.hasError('minlength') && authorAddForm.get('name')?.dirty"  class="form-text text-muted">
-                    Ürün adı en az iki karakter olmalıdır
-                </small>
+                
                
                 <div class="mb-3">
                     <label>Kimlik:</label>

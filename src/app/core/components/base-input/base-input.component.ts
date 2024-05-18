@@ -15,6 +15,7 @@ export class BaseInputComponent {
   @Input() labelId!: string;
   @Input() inputType: string = 'text';
   @Input() controlName!: string;
+  @Input() placeholder!: string;
 
   constructor(private controlContainer: ControlContainer) {}
 

@@ -10,12 +10,7 @@
             <label for="categoryName" class="col-sm-2 col-form-label">Kategori:</label>
             <div class="col-sm-10">
               <input type="text" id="categoryName" formControlName="categoryName" class="form-control" placeholder="Kategori"/>
-              <small *ngIf="categoryAddForm.get('categoryName')?.hasError('required') && categoryAddForm.get('categoryName')?.touched" class="form-text text-muted">
-                Ürün adı zorunludur.
-            </small>
-            <small *ngIf="categoryAddForm.get('categoryName')?.hasError('minlength') && categoryAddForm.get('categoryName')?.dirty"  class="form-text text-muted">
-                Ürün adı en az iki karakter olmalıdır.
-            </small>
+              <myinput-errors fieldName="categoryName" />
             </div>
           </div>
         </form>

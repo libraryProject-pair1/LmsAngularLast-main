@@ -8,17 +8,9 @@
                 <div class="mb-3">
                     <label>Kategori Adı:</label>
                     <input type="text" placeholder={{categoryService.selectedCategory.categoryName}} formControlName="categoryName" (change)="onNameChange($event)" class="form-control" value=""/>
+                    <myinput-errors fieldName="categoryName" />
                 </div>
-                
-                <small *ngIf="categoryUpdateForm.get('categoryName')?.hasError('required') && categoryUpdateForm.get('CategoryName')?.touched" class="form-text">
-                    Kategori adı zorunludur.
-                </small>
-                <small *ngIf="categoryUpdateForm.get('categoryName')?.hasError('minlength') && categoryUpdateForm.get('categoryName')?.dirty"  class="form-text text-muted">
-                    Kategori adı en az iki karakter olmalıdır.
-                </small>
-
-               
-                
+   
             </form>
         </div>
         <div class="card-footer">

@@ -12,12 +12,7 @@
             <label for="name" id="publisherName" class="col-sm-2 col-form-label">Yayınevi:</label>
             <div class="col-sm-10">
               <input type="text" id="publisherName" formControlName="name" class="form-control" placeholder="Yayınevi"/>
-              <small *ngIf="publisherAddForm.get('name')?.hasError('required') && publisherAddForm.get('name')?.touched" class="form-text text-muted">
-                Ürün adı zorunludur.
-            </small>
-            <small *ngIf="publisherAddForm.get('name')?.hasError('minlength') && publisherAddForm.get('name')?.dirty"  class="form-text text-muted">
-                Ürün adı en az iki karakter olmalıdır.
-            </small>
+              <myinput-errors fieldName="name" />
             </div>
           </div>
         </form>

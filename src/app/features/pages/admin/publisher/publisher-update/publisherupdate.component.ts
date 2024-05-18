@@ -9,11 +9,12 @@ import { Response } from '../../../../models/response';
 import { SingleResponseModel } from '../../../../models/singleResponseModel';
 import { ResponseModel } from '../../../../models/responseModel';
 import { ToastrService } from 'ngx-toastr';
+import { BaseInputErrorsComponent } from '../../../../../core/components/base-input-errors/base-input-errors.component';
 
 @Component({
   selector: 'app-update-publisher',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,BaseInputErrorsComponent],
   templateUrl: './publisherupdate.component.html',
   styleUrl: './publisherupdate.component.scss'
 })

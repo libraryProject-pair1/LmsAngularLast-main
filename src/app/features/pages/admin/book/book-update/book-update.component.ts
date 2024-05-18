@@ -17,12 +17,13 @@ import { AuthorService } from '../../../../services/author.service';
 import { BookListComponent } from '../book-list/book-list.component';
 import { SingleResponseModel } from '../../../../models/singleResponseModel';
 import { ToastrService } from 'ngx-toastr';
+import { BaseInputErrorsComponent } from '../../../../../core/components/base-input-errors/base-input-errors.component';
 
 
 @Component({
   selector: 'app-book-update',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, CategoryListComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, CategoryListComponent, BaseInputErrorsComponent],
   templateUrl: './book-update.component.html',
   styleUrl: './book-update.component.scss'
 })
