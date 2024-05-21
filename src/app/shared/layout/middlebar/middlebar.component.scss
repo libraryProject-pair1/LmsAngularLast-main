@@ -79,5 +79,30 @@ h2 {
   background:linear-gradient(to bottom, #e2afaf, #6e0f0f);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-left: 50px;
+  margin-left: 40px;
+ }
+
+
+
+ @media(max-width:768px){
+
+  .navbar{
+    
+    .container-fluid{
+      flex-direction: column;
+      h2{
+        margin-right: 40px;
+      }
+  
+     .navbar-nav{
+      flex-direction: row;
+      margin: 0 10px;
+     // padding-left: 10px;
+      
+
+     }
+    
+    }
+  }
+
  }

@@ -4,6 +4,10 @@
   margin-top:0;
    .navbar{
       padding: 0 5px;;
+
+      .mobil{
+        display: flex;
+      }
       
       .navbar-nav{
           align-items: center;
@@ -154,3 +158,25 @@
   }
   
  
+  @media(max-width:768px){
+    .container{
+  
+
+      .navbar{
+      
+        .container-fluid{
+          flex-direction: column;
+          margin: 5px 0;
+          padding: 5px 0;  
+         // box-shadow: inset 0 0 2em rgb(245, 217, 224);
+         // background-color: rgb(247, 235, 237);
+          line-height: 40px;
+          .mobil{
+            margin: 8px 0;
+            
+            
+          }
+        }
+      }
+    }
+  }

@@ -15,6 +15,7 @@ import { PublisherService } from '../../../services/publisher.service';
 import { AuthorService } from '../../../services/author.service';
 import { ResponseModel } from '../../../models/responseModel';
 import { AuthService } from '../../../../core/services/Auth.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-book-list-for-members',
@@ -44,23 +45,96 @@ export class BookListForMembersComponent {
     private activatedRoute: ActivatedRoute,
     public authService:AuthService) { }
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      if (params["categoryId"]) {
-        this.getBooksByCategoryId(params['categoryId']);
-      }
-      else if (params["authorId"]) {
-        this.getBooksByAuthorId(params['authorId']);
-      }
-      else {
-        this.getCategories();
-        this.getPublishers();
-        this.getAuthors();
-        this.postList();
-        this.getBooks();
-      }
-    })
-  }
+    ngOnInit(): void {
+      this.activatedRoute.params.subscribe(params => {
+        if (params["categoryId"]) {
+          this.getBooksByCategoryId(params['categoryId']);
+        }
+        else if (params["authorId"]) {
+          this.getBooksByAuthorId(params['authorId']);
+        }
+        else {
+          forkJoin({
+            categories: this.categoryService.getAll(),
+            publishers: this.publisherService.getAllPublisher(),
+            authors: this.authorService.getAllAuthors(),
+            books: this.bookService.getAll()
+          }).subscribe(({categories, publishers, authors, books}) => {
+            this.categoryList = categories.items;
+            this.publisherList = publishers.items;
+            this.authorList = authors.items;
+            this.bookList = books.items;
+            
+            this.bookList.forEach(book => {
+              const category = this.categoryList.find(category => category.id === book.categoryId);
+              const publisher = this.publisherList.find(publisher => publisher.id === book.publisherId);
+              const author = this.authorList.find(author => author.id === book.authorId);
+              
+              if (category) book.categoryName = category.categoryName;
+              if (publisher) book.publisherName = publisher.name;
+              if (author) book.authorName = author.name;
+            });
+          }, error => {
+            console.log(error);
+          });
+        }
+      });
+    }
+    
+    getBooksByCategoryId(categoryId: number) {
+      forkJoin({
+        categories: this.categoryService.getAll(),
+        publishers: this.publisherService.getAllPublisher(),
+        authors: this.authorService.getAllAuthors(),
+        books: this.bookService.getBooksByCategoryId(categoryId)
+      }).subscribe(({categories, publishers, authors, books}) => {
+        this.categoryList = categories.items;
+        this.publisherList = publishers.items;
+        this.authorList = authors.items;
+        this.bookList = books.items;
+        
+        this.bookList.forEach(book => {
+          const category = this.categoryList.find(category => category.id === book.categoryId);
+          const publisher = this.publisherList.find(publisher => publisher.id === book.publisherId);
+          const author = this.authorList.find(author => author.id === book.authorId);
+          
+          if (category) book.categoryName = category.categoryName;
+          if (publisher) book.publisherName = publisher.name;
+          if (author) book.authorName = author.name;
+        });
+      }, error => {
+        console.log(error);
+      });
+    }
+    
+    getBooksByAuthorId(authorId: number) {
+      forkJoin({
+        categories: this.categoryService.getAll(),
+        publishers: this.publisherService.getAllPublisher(),
+        authors: this.authorService.getAllAuthors(),
+        books: this.bookService.getBooksByAuthorId(authorId)
+      }).subscribe(({categories, publishers, authors, books}) => {
+        this.categoryList = categories.items;
+        this.publisherList = publishers.items;
+        this.authorList = authors.items;
+        this.bookList = books.items;
+        
+        this.bookList.forEach(book => {
+          const category = this.categoryList.find(category => category.id === book.categoryId);
+          const publisher = this.publisherList.find(publisher => publisher.id === book.publisherId);
+          const author = this.authorList.find(author => author.id === book.authorId);
+          
+          if (category) book.categoryName = category.categoryName;
+          if (publisher) book.publisherName = publisher.name;
+          if (author) book.authorName = author.name;
+        });
+      }, error => {
+        console.log(error);
+      });
+    }
+    
+    
+
 
   onSelectBook(book: GetAllBook) {
     this.bookService.selectedBook = book; // Seçilen kitabı sakla
@@ -150,24 +224,6 @@ export class BookListForMembersComponent {
     }
   }
 
-  getBooksByCategoryId(categoryId: number) {
-    this.bookService.getBooksByCategoryId(categoryId).subscribe((response) => {
-      this.bookList = response.items;
-    },
-      error => {
-        console.log(error)
-      }
-    )
-  }
-  getBooksByAuthorId(authorId: number) {
-    this.bookService.getBooksByAuthorId(authorId).subscribe((response) => {
-      this.bookList = response.items;
-    },
-      error => {
-        console.log(error)
-      }
-    )
-  }
 
   postList(): void {
     this.bookService.getAll().subscribe(response => {

@@ -4,29 +4,24 @@
 
 
 <div class="container" id="firstrow">
-  <div class="row">
+  <div class="row d-flex">
     <div class="col-4">
-     <div class="prd-main-wrapper">
-      <div></div>
-      <div class="prd-content">
-        <div class="prd-card-wrapper">
-          <div class="boxes d-flex">
-            <img class="me-2" src="/assets/img/promotion.png" alt="" width="20px" height="20px">
-          <h4>Duyurular</h4>
+      <div class="prd-main-wrapper">
+        <div class="prd-content">
+          <div class="prd-card-wrapper">
+            <div class="boxes d-flex">
+              <img class="me-2" src="/assets/img/promotion.png" alt="" width="20px" height="20px">
+            <h4>Duyurular</h4>
+            </div>
+            <div class="prd-infos" *ngFor="let item of announcementList" >
+             <!--  <h5 class="card-title mb-2">{{item.organization}}</h5> -->
+             <h6 class="card-subtitle mb-2 ">{{item.title}}</h6>
+             <p class="card-text"> <marquee behavior="scroll" direction="right">{{item.description}}</marquee></p>
+  
+            </div>
           </div>
-          <div class="prd-infos" *ngFor="let item of announcementList" >
-           <!--  <h5 class="card-title mb-2">{{item.organization}}</h5> -->
-           <h6 class="card-subtitle mb-2 ">{{item.title}}</h6>
-           <p class="card-text"> <marquee behavior="scroll" direction="right">{{item.description}}</marquee></p>
-
-          </div>
-
         </div>
-
       </div>
-
-     </div>
-
     </div>
     <div class="col-4">
       <div class="gallery">
@@ -40,10 +35,10 @@
     <div class="col-4">
 
 
-      <div class="prd-main-wrapper">
+      <div class="aaa prd-main-wrapper">
        
         <div class="prd-content">
-          <div class="prd-card-wrapper2">
+          <div class="prd-card-wrapper">
             <div class="boxes d-flex">
               <img class="me-2" src="/assets/img/hyperlink.png" alt="" width="20px" height="20px">
             <h4>Bağlantılar</h4>
@@ -81,20 +76,20 @@
     </div>
  </div>
  </div>
-</div>
+
 
 
 <div class="container">
-   <div>
+  <!--  <div>
   <img src="/assets/img/readflower.png" alt="readflower" class="purple">
-   </div>
-   <div>
+   </div>-->
+   <div> 
     <app-book-list-for-members></app-book-list-for-members>
    </div>
    <div>
     <img class="desen" src="/assets/img/desen.png" alt="">
    </div>
 </div>
-
+</div>
 
  <app-footer></app-footer>

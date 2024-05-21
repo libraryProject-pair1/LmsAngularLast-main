@@ -16,15 +16,19 @@ import { ResponseModel } from '../../../models/responseModel';
 import { Book } from '../../../models/book';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthService } from '../../../../core/services/Auth.service';
+import { forkJoin } from 'rxjs';
+import { FilterBookListForAuthorPipe } from '../../../../core/pipes/filter-book-list-for-author.pipe';
+
 
 @Component({
   selector: 'app-book-list-for-authors',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, RouterModule,FilterlistPipe,FilterBookListForCategoryPipe,NgxPaginationModule],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule,FilterBookListForAuthorPipe,FilterBookListForCategoryPipe,NgxPaginationModule],
   templateUrl: './book-list-for-authors.component.html',
   styleUrl: './book-list-for-authors.component.scss'
 })
 export class BookListForAuthorsComponent {
+ 
   title = 'pagination';
   POSTS: any;
   page: number = 1;
@@ -45,27 +49,32 @@ export class BookListForAuthorsComponent {
     private activatedRoute:ActivatedRoute,
   private router:Router,
   public authService:AuthService){}
+ 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-      if(params["categoryId"]){
+    this.activatedRoute.params.subscribe(params => {
+      if (params["categoryId"]) {
         this.getBooksByCategoryId(params['categoryId']);
-        
-        }
-        else if(params["authorId"]){
-          this.getBooksByAuthorId(params['authorId']);
-        }
-        else{
-          this.getCategories();
-          this.getPublishers();
-          
-          this.getAuthors();
-          this.postList();
+      }
+      else if (params["authorId"]) {
+        this.getBooksByAuthorId(params['authorId']);
+      }
+      else {
+        forkJoin({
+          categories: this.categoryService.getAll(),
+          publishers: this.publisherService.getAllPublisher(),
+          authors: this.authorService.getAllAuthors()
+        }).subscribe(({categories, publishers, authors}) => {
+          this.categoryList = categories.items;
+          this.publisherList = publishers.items;
+          this.authorList = authors.items;
           this.getBooks();
-        }
-    })
-    
-  
+        }, error => {
+          console.log(error);
+        });
+      }
+    });
   }
+  
 
   getBooks(){
     this.bookService.getAll().subscribe({
@@ -152,27 +161,7 @@ export class BookListForAuthorsComponent {
     }
   }
 
-  getBooksByCategoryId(categoryId:number){
-    this.bookService.getBooksByCategoryId(categoryId).subscribe((response)=>
-    {
-      this.bookList = response.items; 
-      
-    },
-    error=>{
-      console.log(error)
-    }
-  )
-}
-getBooksByAuthorId(authorId:number){
-  this.bookService.getBooksByAuthorId(authorId).subscribe((response)=>
-  {
-    this.bookList = response.items;
-  },
-  error=>{
-    console.log(error)
-  }
-)
- }
+ 
  postList(): void {
   this.bookService.getAll().subscribe(response => {
     if (response && response.items) {
@@ -196,5 +185,58 @@ onSelectBook(book: GetAllBook) {
   this.bookService.selectedBook = book; // Seçilen kitabı sakla
   this.router.navigate(['/loanTransaction']); // loan.html sayfasına yönlendir
 }
+
+getBooksByCategoryId(categoryId: number) {
+  forkJoin({
+    categories: this.categoryService.getAll(),
+    publishers: this.publisherService.getAllPublisher(),
+    authors: this.authorService.getAllAuthors(),
+    books: this.bookService.getBooksByCategoryId(categoryId)
+  }).subscribe(({categories, publishers, authors, books}) => {
+    this.categoryList = categories.items;
+    this.publisherList = publishers.items;
+    this.authorList = authors.items;
+    this.bookList = books.items;
+    
+    this.bookList.forEach(book => {
+      const category = this.categoryList.find(category => category.id === book.categoryId);
+      const publisher = this.publisherList.find(publisher => publisher.id === book.publisherId);
+      const author = this.authorList.find(author => author.id === book.authorId);
+      
+      if (category) book.categoryName = category.categoryName;
+      if (publisher) book.publisherName = publisher.name;
+      if (author) book.authorName = author.name;
+    });
+  }, error => {
+    console.log(error);
+  });
+}
+
+getBooksByAuthorId(authorId: number) {
+  forkJoin({
+    categories: this.categoryService.getAll(),
+    publishers: this.publisherService.getAllPublisher(),
+    authors: this.authorService.getAllAuthors(),
+    books: this.bookService.getBooksByAuthorId(authorId)
+  }).subscribe(({categories, publishers, authors, books}) => {
+    this.categoryList = categories.items;
+    this.publisherList = publishers.items;
+    this.authorList = authors.items;
+    this.bookList = books.items;
+    
+    this.bookList.forEach(book => {
+      const category = this.categoryList.find(category => category.id === book.categoryId);
+      const publisher = this.publisherList.find(publisher => publisher.id === book.publisherId);
+      const author = this.authorList.find(author => author.id === book.authorId);
+      
+      if (category) book.categoryName = category.categoryName;
+      if (publisher) book.publisherName = publisher.name;
+      if (author) book.authorName = author.name;
+    });
+  }, error => {
+    console.log(error);
+  });
+}
+
 
 }

@@ -6,11 +6,11 @@
           <div class="card">
               <div class="card-body">
               
-                  <h5 class="card-title">Ödünç Alacak Kişi:{{authService.loggedInMember?.firstName?.toUpperCase()}}</h5>
-                  <h5 class="card-title">Ödünç Alınacak Kitap:{{ bookService.selectedBook.name }}</h5>
+                  <h6 class="card-title">Ödünç Alacak Kişi: {{authService.loggedInMember?.firstName?.toUpperCase()+" "+authService.loggedInMember?.lastName?.toUpperCase() }}</h6>
+                  <h5 class="card-title">Ödünç Alınacak Kitap: {{ bookService.selectedBook.name }}</h5>
           
                   <form [formGroup]="loanForm">
-                    
+                     <div>
 
                       <div class="fmb-3" hidden>
                         <label for="returnStatus">Ödünç Durumu:</label>
@@ -21,7 +21,9 @@
                           <label for="returnTime">İade Tarihi:</label>
                           <input type="date" class="form-control" id="returnTime" formControlName="returnTime"   required>
                       </div>
-                      <button type="submit" class="btn btn-outline-dark align-items-center" (click)="addToDb()">Kitap Ödünç Al</button>
+                    
+                      <button type="submit" class="btn btn-outline-dark w-50" (click)="addToDb()">Ödünç Al</button>
+                    </div>
                   </form>
               </div>
           </div>
