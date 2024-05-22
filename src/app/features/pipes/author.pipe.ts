@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Author } from '../models/Author';
+
+import { GetAllBook } from '../models/getAllBook';
 
 @Pipe({
   name: 'author',
@@ -7,9 +8,9 @@ import { Author } from '../models/Author';
 })
 export class AuthorPipe implements PipeTransform {
 
-  transform(value: Author[], authorFilter:string): Author[] {
+  transform(value: GetAllBook[], authorFilter:string): GetAllBook[]{
    authorFilter=authorFilter?authorFilter.toLowerCase():""
-   return authorFilter?value.filter((a:Author)=>a.name.toLocaleLowerCase().indexOf(authorFilter)!==-1):value;
+   return authorFilter?value.filter((a:GetAllBook)=>a.authorName.toLocaleLowerCase().indexOf(authorFilter)!==-1):value;
 
   }
 

@@ -3,7 +3,6 @@ import { FilterBookListForCategoryPipe } from '../../../../core/pipes/FilterBook
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FilterlistPipe } from '../../../../core/pipes/filterlist.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GetAllBook } from '../../../models/getAllBook';
 import { Publisher } from '../../../models/publisher';
@@ -16,11 +15,12 @@ import { AuthorService } from '../../../services/author.service';
 import { ResponseModel } from '../../../models/responseModel';
 import { AuthService } from '../../../../core/services/Auth.service';
 import { forkJoin } from 'rxjs';
+import { BookPipe } from '../../../pipes/book.pipe';
 
 @Component({
   selector: 'app-book-list-for-members',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, RouterModule, NgxPaginationModule, FilterlistPipe, FilterBookListForCategoryPipe],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule, NgxPaginationModule, FilterBookListForCategoryPipe, BookPipe],
   templateUrl: './book-list-for-members.component.html',
   styleUrl: './book-list-for-members.component.scss'
 })
@@ -38,7 +38,7 @@ export class BookListForMembersComponent {
   publisherList: Publisher[] = [];
   authorList: Author[] = [];
   today: Date = new Date();
-  searchKey: string = '';
+  bookFilter:string='';
 
   constructor(private bookService: BookService, private router: Router, private categoryService: CategoryService,
     private publisherService: PublisherService, private authorService: AuthorService,

@@ -13,6 +13,7 @@ export class BookPipe implements PipeTransform {
     return bookFilter?value.filter((b:GetAllBook)=>b.name.toLocaleLowerCase().indexOf(bookFilter)!==-1 
     || b.authorName.toLowerCase().indexOf(bookFilter)!==-1
     || b.isbn.toLowerCase().indexOf(bookFilter)!==-1 
+    || b.categoryName.toLowerCase().indexOf(bookFilter)!==-1
     || b.publisherName.toLowerCase().indexOf(bookFilter)!==-1):value;
     
   }

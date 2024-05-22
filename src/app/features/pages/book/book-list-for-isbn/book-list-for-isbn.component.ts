@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 import { GetAllBook } from '../../../models/getAllBook';
 import { Category } from '../../../models/Category';
@@ -42,13 +42,18 @@ export class BookListForIsbnComponent {
     private publisherService:PublisherService,
     private authorService:AuthorService,
     private router: Router,
+    private route: ActivatedRoute,
     public authService:AuthService){}
   ngOnInit(): void {
-    this.getCategories();
-    this.getPublishers();
-    this.postList();
-    this.getAuthors();
-    this.getBooks();
+
+      this.getCategories();
+      this.getPublishers();
+      this.postList();
+      this.getAuthors();
+      this.getBooks();
+      
+  
+
   }
 
   getBooks(){

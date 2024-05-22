@@ -29,6 +29,7 @@ import { AboutUsComponent } from './features/pages/about-us/about-us.component';
 import { AddAnnouncementComponent } from './features/pages/admin/announcement/add-announcement/add-announcement.component';
 import { EditAnnouncementComponent } from './features/pages/admin/announcement/edit-announcement/edit-announcement.component';
 import { UpdateAnnouncementComponent } from './features/pages/admin/announcement/update-announcement/update-announcement.component';
+import { SearchResultsComponent } from './features/pages/search-results/search-results.component';
 
 
 export const routes: Routes = [
@@ -46,9 +47,8 @@ export const routes: Routes = [
   {
     path:'aboutus' ,component:AboutUsComponent
   },
+  { path: 'search-results', component: SearchResultsComponent },
 
-  
-  
   {path:"homepage/userprofile/:id",component:UserAccountComponent,
   children:[
     {path:"edituser",component:UserEditComponent},

@@ -23,7 +23,7 @@ import { TokenService } from '../../core/services/token.service';
     standalone: true,
     templateUrl: './homepage.component.html',
     styleUrl: './homepage.component.scss',
-    imports: [CommonModule, FormsModule, CategoryListComponent, BookListComponent, BookListForMembersComponent, FooterComponent,RouterModule]
+    imports: [CommonModule, FormsModule, CategoryListComponent, BookListComponent, BookListForMembersComponent, FooterComponent, RouterModule, LayoutComponent]
 })
 export class HomepageComponent {
 

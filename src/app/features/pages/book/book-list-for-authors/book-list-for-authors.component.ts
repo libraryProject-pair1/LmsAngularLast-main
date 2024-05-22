@@ -18,12 +18,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthService } from '../../../../core/services/Auth.service';
 import { forkJoin } from 'rxjs';
 import { FilterBookListForAuthorPipe } from '../../../../core/pipes/filter-book-list-for-author.pipe';
+import { AuthorPipe } from '../../../pipes/author.pipe';
 
 
 @Component({
   selector: 'app-book-list-for-authors',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, RouterModule,FilterBookListForAuthorPipe,FilterBookListForCategoryPipe,NgxPaginationModule],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule,AuthorPipe,FilterBookListForCategoryPipe,NgxPaginationModule],
   templateUrl: './book-list-for-authors.component.html',
   styleUrl: './book-list-for-authors.component.scss'
 })
@@ -40,7 +41,7 @@ export class BookListForAuthorsComponent {
   categoryList:Category[]=[];
   publisherList:Publisher[]=[];
   authorList:Author[]=[];
-  searchKey : string = '';
+ authorFilter: string="";
 
   constructor(private bookService : BookService,
     private categoryService:CategoryService,

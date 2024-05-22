@@ -11,13 +11,13 @@
             <li><a class="dropdown-item" routerLink="/getBooksForIsbnFilter">ISBN Arama</a></li>
           </ul>
         </div>
-        <input class="form-control me-2 fark" style="width: 450px;" type="search" placeholder="Anahtar Kelimeye Göre Kitap Arayın" aria-label="Search" [(ngModel)]="searchKey">
+        <input class="form-control me-2 fark" style="width: 450px;" type="search" placeholder="Anahtar Kelimeye Göre Kitap Arayın" aria-label="Search" [(ngModel)]="bookFilter">
       </div>
     </div>
   </div>
 
   <div class="row d-flex mt-5">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3" *ngFor="let item of bookList | filterlist:searchKey | paginate: {itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3" *ngFor="let item of bookList | book:bookFilter | paginate: {itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
       <div class="prd-main-wrapper">
         <div class="prd-wrapper">
           <div class="product-img">
